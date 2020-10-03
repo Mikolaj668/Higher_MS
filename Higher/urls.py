@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from higher_main_app.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/add-mark', AddMarkView.as_view(), name='add_mark')
 ]
