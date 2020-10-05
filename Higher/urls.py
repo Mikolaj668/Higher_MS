@@ -20,5 +20,6 @@ from higher_main_app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/add-mark', AddMarkView.as_view(), name='add_mark')
+    path('api/add-mark', AddMarkView.as_view(), name='add_mark'),
+    path('api/json-otp', JOutputView.as_view(), name='json_otp'),
 ]
