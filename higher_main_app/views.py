@@ -21,9 +21,16 @@ class AddMarkView(View):
         form = AddMarkForm(request.POST)
 
         if form.is_valid():
+            cnd_task = form.cleaned_data['task']
+            cnd = form.cleaned_data['candidate']
+            cnd_grd = Grade.objects.filter(candidate=cnd)
+
             try:
+                for gr_obj in cnd_grd:
+                    if gr_obj.task == cnd_task:
+                        return HttpResponse('Task already graded.')
                 Grade.objects.get_or_create(**form.cleaned_data)
-                return HttpResponse('Jest partially OK')
+                return HttpResponse('Task successfully graded.')
             except MultipleObjectsReturned as error:
                 return HttpResponse(error)
         return HttpResponse('Invalid form')
