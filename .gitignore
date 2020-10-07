@@ -2,3 +2,4 @@
 venv
 env
 
+database_private_settings.py
